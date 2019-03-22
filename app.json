@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/blogList/blogList",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/blogDetail/blogDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "我的博客",
+    "navigationBarTextStyle": "black"
+  }
+}

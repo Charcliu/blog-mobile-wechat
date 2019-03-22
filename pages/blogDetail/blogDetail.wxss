@@ -1,0 +1,13 @@
+/* pages/blogDetail/blogDetail.wxss */
+
+.title {
+  color: #111;
+  width: 100%;
+  background-color: #ddd;
+  opacity: 0.7;
+}
+
+.markdown {
+  margin: 20rpx;
+  padding: 20rpx;
+}

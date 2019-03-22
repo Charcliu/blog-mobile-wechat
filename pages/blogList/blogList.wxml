@@ -1,0 +1,9 @@
+<!--pages/blogList/blogList.wxml-->
+<view class="blogList">博客列表</view>
+<view wx:for="{{blogList}}" wx:key="index" wx:for-index="index" wx:for-item="blog" class="blog" id="{{blog.id}}" bindtap="goToDetail">
+  <view class="top">
+    <text class="title">{{blog.title}}</text>
+    <text class="vistor">访客:{{blog.vistor_count}}</text>
+  </view>
+  <view class="bottom">{{blog.time}}</view>
+</view>

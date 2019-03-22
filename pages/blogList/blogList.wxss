@@ -1,0 +1,41 @@
+/* pages/blogList/blogList.wxss */
+
+.blogList {
+  padding: 18rpx 20rpx;
+  font-size: 20rpx;
+  color: #111;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ddd;
+  opacity: 0.7;
+}
+
+.blog {
+  margin: 20rpx 20rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.top {
+  overflow: hidden;
+}
+
+.bottom {
+  font-size: 30rpx;
+  color: #888;
+  margin: 20rpx 0rpx;
+}
+
+.title {
+  font-size: 35rpx;
+  float: left;
+  white-space: nowrap;
+  width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.vistor {
+  font-size: 30rpx;
+  float: right;
+  color: #888;
+}

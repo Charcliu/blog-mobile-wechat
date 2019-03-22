@@ -1,0 +1,6 @@
+<!--pages/blogDetail/blogDetail.wxml-->
+
+<text class="title">{{titleObj.title}}</text>
+<rich-text class="markdown">
+  <wemark md="{{detailObj.content}}" link highlight type="wemark"></wemark>
+</rich-text>
