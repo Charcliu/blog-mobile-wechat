@@ -16,6 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.request({
       url: 'https://www.coffeecola.cn:8080/blog/getBlogDeitailById',
       data: {
@@ -30,6 +33,7 @@ Page({
         this.setData({
           detailObj: res.data
         })
+        wx.hideLoading()
       }
     })
 
@@ -48,6 +52,18 @@ Page({
           titleObj: res.data
         })
       }
+    })
+
+    wx.request({
+      url: 'https://www.coffeecola.cn:8080/blog/addVistorCount',
+      data: {
+        blogId: options.id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': app.globalData.cookie
+      },
+      method: 'POST'
     })
   },
 

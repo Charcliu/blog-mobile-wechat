@@ -9,7 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    blogList: []
+    blogList: [],
+    pageNum: 1,
+    pageSize: 10,
+    pages: 0
   },
 
   /**
@@ -58,14 +61,28 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.getBlogList()
+    this.setData({
+      pageNum: 1
+    })
+    this.getBlogList('top')
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    if (this.data.pageNum < this.data.pages) {
+      this.setData({
+        pageNum: this.data.pageNum + 1
+      })
+      this.getBlogList('bottom')
+    } else {
+      wx.showToast({
+        title: '到底啦！！！',
+        icon: 'success',
+        duration: 1000
+      })
+    }
   },
 
   /**
@@ -79,21 +96,31 @@ Page({
       item.time = util.formatTime(new Date(item.time))
     })
   },
-  getBlogList() {
+  getBlogList(type) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.request({
       url: 'https://www.coffeecola.cn:8080/blog/getMyBlog',
-      data: {},
+      data: {
+        pageNum: this.data.pageNum,
+        pageSize: this.data.pageSize
+      },
       header: {
         'content-type': 'application/json',
         'cookie': app.globalData.cookie
       },
       method: 'POST',
       success: res => {
-        this.convertTime(res.data)
+        let blogList = []
+        this.convertTime(res.data.list)
+        type === 'bottom' ? blogList = [...this.data.blogList, ...res.data.list] : blogList = res.data.list
         this.setData({
-          blogList: res.data
+          blogList: blogList,
+          pages: res.data.pages
         })
         wx.stopPullDownRefresh()
+        wx.hideLoading()
       }
     })
   },
