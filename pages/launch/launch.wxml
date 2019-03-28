@@ -1,0 +1,2 @@
+<!--pages/launch/launch.wxml-->
+<cover-image class="launch" src="../../images/launch.png"></cover-image>

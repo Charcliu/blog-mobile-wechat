@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/launch/launch",
     "pages/blogList/blogList",
     "pages/index/index",
     "pages/logs/logs",
