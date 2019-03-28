@@ -14,10 +14,10 @@ Page({
   onLoad: function(options) {
     wx.startPullDownRefresh()
     setTimeout(() => {
-      wx.stopPullDownRefresh()
       wx.redirectTo({
         url: '/pages/blogList/blogList'
       })
+      wx.stopPullDownRefresh()
     }, 3000)
   },
 
