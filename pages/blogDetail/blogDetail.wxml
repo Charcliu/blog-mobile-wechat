@@ -2,3 +2,6 @@
 
 <import src="../../towxml/entry.wxml" />
 <template is="entry" data="{{...article}}" />
+<view class="style">
+  <cover-image bindtap='changStyle' class="img" src="{{imgSrc}}" />
+</view>

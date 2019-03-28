@@ -10,7 +10,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    article: []
+    original: null,
+    article: [],
+    style: 'light',
+    imgSrc: '../../images/dark.png'
   },
 
   /**
@@ -31,17 +34,10 @@ Page({
       },
       method: 'POST',
       success: res => {
-        //将markdown内容转换为towxml数据
-        let data = towxml.toJson(
-          res.data.content, // `markdown`或`html`文本内容
-          'markdown' // `markdown`或`html`
-        );
-        //设置文档显示主题，默认'light'
-        data.theme = 'dark';
-        //设置数据
         this.setData({
-          article: data
-        });
+          original: res.data.content
+        })
+        this.parseData()
         wx.hideLoading()
       }
     })
@@ -123,5 +119,44 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  parseData() {
+    wx.showLoading({
+      title: '样式切换中...',
+    })
+    //将markdown内容转换为towxml数据
+    let data = towxml.toJson(
+      this.data.original, // `markdown`或`html`文本内容
+      'markdown' // `markdown`或`html`
+    );
+    //设置文档显示主题，默认'light'
+    data.theme = this.data.style;
+    //设置数据
+    this.setData({
+      article: data
+    });
+    wx.hideLoading()
+  },
+
+  changStyle() {
+    if (this.data.style == 'light') {
+      this.setData({
+        style: 'dark',
+        imgSrc: '../../images/light.png'
+      })
+      wx.setBackgroundColor({
+        backgroundColor: '#000000'
+      })
+    } else {
+      this.setData({
+        style: 'light',
+        imgSrc: '../../images/dark.png'
+      })
+      wx.setBackgroundColor({
+        backgroundColor: '#ffffff'
+      })
+    }
+    this.parseData()
   }
 })

@@ -11,10 +11,26 @@
 /**主题配色（深色样式）**/
 @import '../../towxml/style/theme/dark.wxss';
 
-.title {
-  color: #111;
-  width: 100%;
-  background-color: #ddd;
-  opacity: 0.7;
+.style {
+  position: fixed;
+  bottom: 200rpx;
+  right: 10rpx;
+  border: 1rpx solid #000;
+  border-radius: 50%;
+  width: 80rpx;
+  text-align: center;
   height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.img {
+  position: fixed;
+  bottom: 210rpx;
+  right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
