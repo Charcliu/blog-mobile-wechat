@@ -1,4 +1,5 @@
 /* pages/blogDetail/blogDetail.wxss */
+@import "../../wxParse/wxParse.wxss";
 
 .title {
   color: #111;
@@ -7,7 +8,3 @@
   opacity: 0.7;
 }
 
-.markdown {
-  margin: 20rpx;
-  padding: 20rpx;
-}

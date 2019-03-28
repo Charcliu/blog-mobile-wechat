@@ -1,6 +1,7 @@
 // pages/blogDetail/blogDetail.js
 //获取应用实例
 const app = getApp()
+var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
 
@@ -33,6 +34,9 @@ Page({
         this.setData({
           detailObj: res.data
         })
+        var article = this.data.detailObj.content;
+        var that = this;
+        WxParse.wxParse('article', 'md', article, that, 5);
         wx.hideLoading()
       }
     })

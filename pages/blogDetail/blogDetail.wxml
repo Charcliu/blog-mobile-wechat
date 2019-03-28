@@ -1,6 +1,5 @@
 <!--pages/blogDetail/blogDetail.wxml-->
 
-<text class="title">{{titleObj.title}}</text>
-<rich-text class="markdown">
-  <wemark md="{{detailObj.content}}" link highlight type="wemark"></wemark>
-</rich-text>
+<import src="../../wxParse/wxParse.wxml" />
+<view class="title">{{titleObj.title}}</view>
+<template is="wxParse" data="{{wxParseData:article.nodes}}" />
