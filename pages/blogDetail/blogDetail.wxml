@@ -1,5 +1,4 @@
 <!--pages/blogDetail/blogDetail.wxml-->
 
-<import src="../../wxParse/wxParse.wxml" />
-<view class="title">{{titleObj.title}}</view>
-<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+<import src="../../towxml/entry.wxml" />
+<template is="entry" data="{{...article}}" />

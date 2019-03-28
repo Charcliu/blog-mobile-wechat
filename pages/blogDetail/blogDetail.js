@@ -1,7 +1,8 @@
 // pages/blogDetail/blogDetail.js
 //获取应用实例
 const app = getApp()
-var WxParse = require('../../wxParse/wxParse.js');
+const Towxml = require('../../towxml/main'); //引入towxml库
+var towxml = new Towxml()
 
 Page({
 
@@ -9,8 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    titleObj: {},
-    detailObj: {}
+    article: []
   },
 
   /**
@@ -31,12 +31,17 @@ Page({
       },
       method: 'POST',
       success: res => {
+        //将markdown内容转换为towxml数据
+        let data = towxml.toJson(
+          res.data.content, // `markdown`或`html`文本内容
+          'markdown' // `markdown`或`html`
+        );
+        //设置文档显示主题，默认'light'
+        data.theme = 'dark';
+        //设置数据
         this.setData({
-          detailObj: res.data
-        })
-        var article = this.data.detailObj.content;
-        var that = this;
-        WxParse.wxParse('article', 'md', article, that, 5);
+          article: data
+        });
         wx.hideLoading()
       }
     })
@@ -52,8 +57,8 @@ Page({
       },
       method: 'POST',
       success: res => {
-        this.setData({
-          titleObj: res.data
+        wx.setNavigationBarTitle({
+          title: res.data.title
         })
       }
     })
