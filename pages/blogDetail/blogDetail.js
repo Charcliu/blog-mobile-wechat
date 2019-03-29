@@ -122,9 +122,6 @@ Page({
   },
 
   parseData() {
-    wx.showLoading({
-      title: '样式切换中...',
-    })
     //将markdown内容转换为towxml数据
     let data = towxml.toJson(
       this.data.original, // `markdown`或`html`文本内容
@@ -136,10 +133,12 @@ Page({
     this.setData({
       article: data
     });
-    wx.hideLoading()
   },
 
   changStyle() {
+    wx.showLoading({
+      title: '样式切换中...',
+    })
     if (this.data.style == 'light') {
       this.setData({
         style: 'dark',
@@ -158,5 +157,6 @@ Page({
       })
     }
     this.parseData()
+    wx.hideLoading()
   }
 })
